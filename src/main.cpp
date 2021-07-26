@@ -33,20 +33,20 @@
 // the flag 0 means successful exection, -1 one of the steps failed
 
 int main(int argc, char** argv){
-    
+
     /**********************************************************************
      * Basic variables to parse command line (filename and flags)          *
      * Followed by basic command line parsing                              *
      *                                                                     *
      **********************************************************************/
-    
+
     int infile_flag = -1;    // format 0=array, 1-graph
     std::string infile_name; //filename to read data from
     double pixelsize = 1.0;
     bool if_per = 0;         // if periodic BC (0-false, 1-true)
     int n_of_phases = 2;    // number of phases (default 2)
     std::string res_path("./");
-    
+
     for (int i = 1; i < (argc-1); i++){
         std::string param(argv[i]);
         if (param == std::string("-g")) {
@@ -86,7 +86,7 @@ int main(int argc, char** argv){
     << " res_path" << res_path << std::endl;
     std::cout << "-------------------------------------------" << std::endl;
 #endif
-    
+
     if ( (argc == 1) || (infile_flag == -1) ) {
         std::cout << std::endl
         << "GraSPI accepts input data in two formats:"
@@ -102,8 +102,8 @@ int main(int argc, char** argv){
         << std::endl << std::endl;
         return 0;
     }
-    
-    
+
+
     /**********************************************************************
      * Graph definition and declaration                                    *
      *(list of containers to store labels of vertices and edges etc)       *
@@ -119,15 +119,15 @@ int main(int argc, char** argv){
     graspi::edge_weights_t  edge_weights(m); //container storing edge weights
     graspi::ccs_t           ccs;            //container storing basic info of CCs
     graspi::DESC          descriptors;    //container (vector) storing all descriptors
-    
+
     time_check timer;
     timer.start();
-    
+
     /***********************************************************************
      * Graph construction                                                  *
      *                                                                     *
      **********************************************************************/
-    
+
     if(infile_flag == 0){
         if( !graspi::read_array(infile_name, vertex_colors, d_a, d_g) ){
             std::cout << "Problem with input file - "
@@ -168,11 +168,11 @@ int main(int argc, char** argv){
         << std::endl;
 #endif
     }
-    
+
     timer.check("Reading done");
     d_log << "[STATUS] 2/5" << std::endl;
     d_log << "[STATUS] Graph constructed" << std::endl;
-    
+
     /***********************************************************************
      * Connected Components Identification                                 *
      *                                                                     *
@@ -184,12 +184,12 @@ int main(int argc, char** argv){
     timer.check("CC determined");
     d_log << "[STATUS] 3/5" << std::endl;
     d_log << "[STATUS] Connected components found" << std::endl;
-    
+
 #ifdef DEBUG
     std::cout << "(3) Connected components found! " << std::endl;
     std::cout << "-------------------------------------------" << std::endl;
 #endif
-    
+
     /***********************************************************************
      * Performance Indicators Computations                                 *
      *                                                                     *
@@ -206,7 +206,7 @@ int main(int argc, char** argv){
     }
     if(n_of_phases == 3){
         descriptors.initiate_descriptors_3_phase();
-        
+
         all_perfomance_indicators_3phases( descriptors, std::cout,
                                           G, d_g,
                                           vertex_colors, d_a, edge_weights, edge_colors,
@@ -214,7 +214,7 @@ int main(int argc, char** argv){
                                           pixelsize,
                                           res_path);
     }
-    
+
     //    all_perfomance_indicators( d_log,
     //			       G, d_g,
     //			       vertex_colors, d_a, edge_weights, edge_colors,
@@ -224,24 +224,24 @@ int main(int argc, char** argv){
     timer.check("ALL performance indicators computed");
     d_log << "[STATUS] 4/5" << std::endl;
     d_log << "[STATUS] Performance indicators identified" << std::endl;
-    
-    
+
+
     /***********************************************************************
      * Final stage - get timing and clean                                  *
      *                                                                     *
      *                                                                     *
      **********************************************************************/
     timer.stop();
-    
-    if(!G) delete G;
-    
+
+    if(G) delete G;
+
     d_log << "[STATUS] 5/5" << std::endl;
     d_log << "[STATUS] Graph destructed" << std::endl;
     d_log << "[STATUS] GraSPI exits!" << std::endl;
-    
+
     d_log << std::endl << timer;
-    
+
     d_log.close();
-    
+
     return 0;
 }

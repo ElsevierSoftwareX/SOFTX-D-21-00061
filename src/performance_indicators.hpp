@@ -113,7 +113,8 @@ namespace graspi {
         double F_ABS = wf_abs(C,d_a,wfoo_abs,pixelsize);
         descriptors.update_desc("ABS_wf_D",F_ABS);
 
-        std::pair<int,int> n_useful = find_useful_cc(descriptors, G, C, vCC, CC);
+        //std::pair<int,int> n_useful =
+        find_useful_cc(descriptors, G, C, vCC, CC);
         //        int n_black_useful = n_useful.first;
         //        int n_white_useful = n_useful.second;
 
@@ -219,7 +220,8 @@ namespace graspi {
         descriptors.update_desc("ABS_wf_D",F_ABS);
 
         //      os << "[F ABS] Weighted fraction of black vertices: " << F_ABS << std::endl;
-        std::pair<int,int> n_useful = find_useful_cc(descriptors, G, C, vCC, CC);
+        // std::pair<int,int> n_useful =
+        find_useful_cc(descriptors, G, C, vCC, CC);
         //      int n_black_useful = n_useful.first;
         //      int n_white_useful = n_useful.second;
 
@@ -356,7 +358,8 @@ namespace graspi {
         double F_ABS = wf_abs(C,d_a,wfoo_abs,pixelsize);
         os << "[F ABS] Weighted fraction of black vertices: "
         << F_ABS << std::endl;
-        std::pair<int,int> n_useful = find_useful_cc(descriptors, G, C, vCC, CC); // , os
+        //std::pair<int,int> n_useful =
+        find_useful_cc(descriptors, G, C, vCC, CC); // , os
         //      int n_black_useful = n_useful.first;
         //      int n_white_useful = n_useful.second;
 

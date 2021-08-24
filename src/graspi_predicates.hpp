@@ -156,7 +156,7 @@ namespace graspi{
     public:
         /// The default constructor
         connect_relevant_meta_vertex()
-        : G_(0), vertex_colors_(0), vertex_ccs_(0), ccs_(0), c_(0) { }
+        : vertex_colors_(0), vertex_ccs_(0), ccs_(0), c_(0) { }
         void change_color(COLOR c){ c_ = c; }
 
         /// The default constructor
@@ -166,12 +166,12 @@ namespace graspi{
         /// @param vCC is the vector storing indices of the connected components (CC) of each vector in the graph
         /// @param CC is the vector of CC,
         /// @param color is the vertices og this color to be checked
-        connect_relevant_meta_vertex(const graph_t& G,
+        connect_relevant_meta_vertex(//const graph_t& G,
                                      const vertex_colors_t& C,
                                      const vertex_ccs_t& vCC,
                                      const ccs_t& CC,
                                      COLOR color)
-        : G_(&G), vertex_colors_(&C), vertex_ccs_(&vCC),
+        : vertex_colors_(&C), vertex_ccs_(&vCC),
         ccs_(&CC), c_(color) { }
 
         /// The operator used to filter the graph
@@ -189,7 +189,7 @@ namespace graspi{
             return false;
         }
     private:
-        const graph_t* G_;  ///< The pointer to the graph to be filtered
+//        const graph_t* G_;  ///< The pointer to the graph to be filtered
         const vertex_colors_t* vertex_colors_; ///< The pointer to the vector of vertex labels
         const vertex_ccs_t* vertex_ccs_; ///< The pointer to the vector storing vertex connected component index
         const ccs_t* ccs_; ///< The pointer to the vector storing the connected components

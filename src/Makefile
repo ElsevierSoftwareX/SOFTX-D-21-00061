@@ -8,10 +8,10 @@ BOOSTLIB="/Users/owodo/Packages/boost_1_72_0"
 COPT = -I${BOOSTLIB} -O3   #-g3 -DDEBUG
 
 graspi: main.cpp graph_constructors.cpp
-	g++ -o graspi -Wno-deprecated ${COPT} main.cpp graph_constructors.cpp
+	g++ -o graspi -Wall ${COPT} main.cpp graph_constructors.cpp
 
 graspiAPI: mainAPI.cpp graph_constructors.cpp
-	g++ -o graspiAPI -Wno-deprecated ${COPT} mainAPI.cpp graph_constructors.cpp
+	g++ -o graspiAPI -Wall ${COPT} mainAPI.cpp graph_constructors.cpp
 
 
 clean:

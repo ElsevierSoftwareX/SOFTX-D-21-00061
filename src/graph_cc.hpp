@@ -92,7 +92,7 @@ namespace graspi{
             CCs[vCCs[i]].size++;
         }
 
-        unsigned int size_of_G = boost::num_vertices(*G);
+//        unsigned int size_of_G = boost::num_vertices(*G);
 
         // determine all vertices connected to the bottom electrode
         std::set<int> comp_conn_to_electrode;

@@ -319,8 +319,8 @@ namespace graspi {
                                              ){
         //identify set of all black vertices with connection to green and path to red
         //identify set of all white vertices with connection to green and path to blue
-        connect_relevant_meta_vertex pred_black(*G, C, vCC, CC, BLACK);
-        connect_relevant_meta_vertex pred_white(*G, C, vCC, CC, WHITE);
+        connect_relevant_meta_vertex pred_black(C, vCC, CC, BLACK);
+        connect_relevant_meta_vertex pred_white(C, vCC, CC, WHITE);
 
         graph_t::edge_iterator e, e_end;
         boost::tie(e, e_end) = boost::edges(*G);

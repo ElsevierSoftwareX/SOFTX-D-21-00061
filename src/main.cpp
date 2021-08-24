@@ -40,11 +40,11 @@ int main(int argc, char** argv){
      *                                                                     *
      **********************************************************************/
 
-    int infile_flag = -1;    // format 0=array, 1-graph
-    std::string infile_name; //filename to read data from
+    int infile_flag = -1;    // format: -1=unspecifiedYet, 0=array, 1=graph
+    std::string infile_name; // filename to read data from
     double pixelsize = 1.0;
-    bool if_per = 0;         // if periodic BC (0-false, 1-true)
-    int n_of_phases = 2;    // number of phases (default 2)
+    bool if_per = 0;         // flag to set if periodic BC (0=false, 1=true and periodic on side)
+    int n_of_phases = 2;     // number of phases (default 2)
     std::string res_path("./");
 
     for (int i = 1; i < (argc-1); i++){

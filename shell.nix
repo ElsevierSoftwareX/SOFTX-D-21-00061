@@ -1,15 +1,15 @@
 #
-# $ nix-shell --pure --argstr tag 20.09
+# $ nix-shell --pure --argstr tag 21.05
 #
 
 {
-  tag ? "20.09"
+  tag ? "21.05"
 }:
 let
   pkgs = import (builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/${tag}.tar.gz") {};
   pypkgs = pkgs.python3Packages;
   graspi = pypkgs.callPackage ./default.nix {};
-  linting = with pypkgs; [ black pylint flake8 ];
+  linting = with pypkgs; [ black pylint flake8 numpy toolz setuptools cython ];
 in
   (graspi.overridePythonAttrs (old: rec {
     nativeBuildInputs = old.propogatedBuildInputs ++ linting;

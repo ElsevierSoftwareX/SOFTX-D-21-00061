@@ -1,10 +1,4 @@
-{ buildPythonPackage
-, cython
-, boost
-, numpy
-, python
-, lib
-}:
+{ buildPythonPackage, cython, boost, numpy, python3, lib }:
 buildPythonPackage rec {
   pname = "graspi";
   version = "0.1";
@@ -12,7 +6,7 @@ buildPythonPackage rec {
   src = builtins.filterSource (path: type: type != "directory" || baseNameOf path != ".git") ./.;
 
   propogatedBuildInputs = [
-    cython
+    python3
     boost
     numpy
   ];
@@ -20,11 +14,11 @@ buildPythonPackage rec {
   pythonImportsCheck = ["graspi"];
 
   checkInputs = [
-    python
+    python3
   ];
 
   checkPhase = ''
-    ${python.interpreter} testCythonizedGraSPI.py
+    ${python3.interpreter} testCythonizedGraSPI.py
   '';
 
   buildInputs = propogatedBuildInputs;

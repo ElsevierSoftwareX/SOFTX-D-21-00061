@@ -25,6 +25,15 @@ To compile go to src file, you find there Makefile. If you install boost library
 Type make all
 
 
+## GraSPI cythonized and available under nix 
+
+GraSPI has been cythonized and made as a nix package. see the configure files: shell.nix and default.nix. To create an ecnviroment with NiX clone this repository adn run 
+
+```
+$ nix-shell
+```
+
+
 ## How to cite GraSPI
 
 @article{wodo2012graph,  
